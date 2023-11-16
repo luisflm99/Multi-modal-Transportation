@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+      <div class="page-header d-flex align-items-center" style="background-image: url('{% static 'img/page-header.jpg' %}');">
+        <div class="container position-relative">
+          <div class="row d-flex justify-content-center">
+            <div class="col-lg-6 text-center">
+              <h2>Crear {{ model }}</h2>
+              <p>Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav>
+        <div class="container">
+          <ol>
+            <li><a href="{% url "core:home" %}">Inicio</a></li>
+            <li>Crear {{ model }}</li>
+          </ol>
+        </div>
+      </nav>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Get a Quote Section ======= -->
+    <section id="get-a-quote" class="get-a-quote">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row g-0">
+
+          <div class="col-lg-5 quote-bg" style="background-image: url({% static 'img/quote-bg.jpg' %});"></div>
+
+          <div class="col-lg-7">
+            <form method="post" class="php-email-form">
+              <h3>Crear {{ model }}</h3>
+              <p>Vel nobis odio laboriosam et hic voluptatem. Inventore vitae totam. Rerum repellendus enim linead sero park flows.</p>
+              <div class="row gy-4">
+                {% for field in form %}
+                <div class="col-md-12">
+                    {{ field }}
+                </div>
+                {% endfor %}
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Cargando</div>
+                  <div class="error-message">{{ error_message }}</div>
+                  <div class="sent-message">{{ success_message }}</div>
+
+                  <button type="submit">Crear</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Quote Form -->
+
+        </div>
+
+      </div>
+    </section><!-- End Get a Quote Section -->
+
+  </main><!-- End #main -->
+  {% endblock content %}

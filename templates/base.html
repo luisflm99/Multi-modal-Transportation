@@ -1,0 +1,39 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+    {% block title %}Title{% endblock title %}
+    </title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="{% static 'css/libraries/bootstrap.min.css' %}" rel="stylesheet"/>
+    <!-- Bootstrap Icons -->
+    <link href="{% static 'css/libraries/bootstrap-icons-1.11.1/bootstrap-icons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/libraries/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/libraries/glightbox/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/libraries/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/libraries/aos.css' %}" rel="stylesheet">
+
+    <!-- Static CSS -->
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" />
+    {% block extra_head %}{% endblock extra_head %}
+</head>
+<body>
+    {% include 'components/navbar.html' %}
+    {% block content %}{% endblock content %}
+    {% include 'components/footer.html' %}
+    <!-- Bootstrap JS -->
+    <script src="{% static 'js/libraries/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/libraries/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{% static 'js/libraries/glightbox/glightbox.min.js' %}"></script>
+    <script src="{% static 'js/libraries/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/libraries/aos/aos.js' %}"></script>
+    <script src="{% static 'js/libraries/php-email-form/validate.js' %}"></script>
+    <!-- Static JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block javascript %}{% endblock javascript %}
+</body>
+
+</html>
