@@ -192,43 +192,8 @@ class MMT:
         # warehouseCost = np.sum(np.sum(stayTime * self.kVol, axis=1) * self.whCost)
 
         return 0, arrTime, stayTime
-
-    def txt_solution(self, route: pd.DataFrame, order: pd.DataFrame):
-        """transform the cached results to text."""
-
-        travelMode = dict(
-            zip(zip(route["Source"], route["Destination"]), route["Travel Mode"])
-        )
-        txt = "Solution"
-        txt += "\nNumber of goods: " + str(order["Order Number"].count())
-        txt += "\nTotal cost: " + str(
-            self.transportCost + self.whCostFinal + self.taxCost
-        )
-        txt += "\nTransportation cost: " + str(self.transportCost)
-        txt += "\nWarehouse cost: " + str(self.whCostFinal)
-        txt += "\nTax cost: " + str(self.taxCost)
-
-        for i in range(order.shape[0]):
-            txt += "\n------------------------------------"
-            txt += "\nGoods-" + str(i + 1) + "  Category: " + order["Commodity"][i]
-            txt += (
-                "\nStart date: "
-                + pd.to_datetime(order["Order Date"]).iloc[i].date().isoformat()
-            )
-            txt += "\nArrival date: " + str(self.arrTime_[f"goods-{str(i + 1)}"])
-            txt += "\nRoute:"
-            solution = self.solution_[f"goods-{str(i + 1)}"]
-            
-            route_txt = "".join(
-                f"\n({a + 1})Date: {j[2]}  From: {j[0]}  To: {j[1]}  By: {travelMode[j[0], j[1]]}"
-                for a, j in enumerate(solution)
-            )
-            txt += route_txt
-
-        return txt
-
-    
-    def solution(self, order: pd.DataFrame) -> str:
+ 
+    def solution_txt(self, order: pd.DataFrame) -> str:
         """Transform the cached results"""
         if self.arrTime_['goods-1'] == "NaT":
             raise NotSolvable()
@@ -244,14 +209,10 @@ class MMT:
         solution = self.solution_["goods-1"]
         
         route_txt = ""
-        a = 1
         
-        for i in solution:
-            route_txt += "\n(" + str(a) + ")Fecha: " + i[2]
-            route_txt += "  Desde: " + i[0]
-            route_txt += "  Hacia: " + i[1]
-            a += 1
+        for i, s in enumerate(solution):
+            route_txt += f"\n({i+1})Fecha: {s[2]}  Desde: {s[0]}  Hacia: {s[1]}"
+            
         txt += route_txt
-        txt += "\n------------------------------------"
 
         return txt

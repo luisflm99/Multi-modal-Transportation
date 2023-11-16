@@ -60,8 +60,13 @@ class Order(models.Model):
         m.solve_model()
         
         try:
-            return m.solution(order)
+            t = m.solution_txt(order)
+            print(t)
+            return t
         except NotSolvable as error:
             return error.args[0]
         
         
+class OrderOptimized(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name="Órden", related_name="optimizeds")
+    
