@@ -1,6 +1,13 @@
 from django.urls import path
 
-from .views import HomeView, AboutView, OrderCreateView
+from .views import (
+    HomeView,
+    AboutView,
+    OrderCreateView,
+    OrderListView,
+    RouteCreateView,
+    RouteListView
+)
 
 
 app_name = "core"
@@ -11,4 +18,9 @@ urlpatterns = [
     
     # Orders
     path("order-create/", OrderCreateView.as_view(), name="order-create"),
+    path("order-list/", OrderListView.as_view(), name="order-list"),
+    
+    # Routes
+    path("route-create/", RouteCreateView.as_view(), name="route-create"),
+    path("route-list/", RouteListView.as_view(), name="route-list"),
 ]

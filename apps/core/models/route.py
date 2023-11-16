@@ -10,7 +10,7 @@ from ..managers import RouteManager
 class Route(models.Model):
     source = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="source_routes", verbose_name="Lugar de origen")
     destination = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="destination_routes", verbose_name="Lugar de destino")
-    container_size = models.IntegerField(verbose_name="Tamaño del Contenedor")
+    container_size = models.IntegerField(verbose_name="Tamaño del Contenedor", default=100)
     carrier = models.CharField(max_length=255, verbose_name="Transportista")
     travel_mode = models.CharField(max_length=2, choices=TravelMode.choices, verbose_name="Modo de Viaje")
     fixed_freight_cost = models.IntegerField(verbose_name="Costo Fijo de Flete", default=0)
@@ -18,7 +18,7 @@ class Route(models.Model):
     bunker_fuel_cost = models.IntegerField(verbose_name="Costo de Bunker/Combustible", default=0)
     documentation_cost = models.IntegerField(verbose_name="Costo de Documentación", default=0)
     equipment_cost = models.IntegerField(verbose_name="Costo de Equipamiento", default=0)
-    extra_cost = models.IntegerField(verbose_name="Costo Extra")
+    extra_cost = models.IntegerField(verbose_name="Costo Extra", default=0)
     warehouse_cost = models.IntegerField(verbose_name="Costo de Almacén", default=0)
     transit_duty = models.FloatField(verbose_name="Derecho de Tránsito", default=0)
     custom_clearance_time = models.IntegerField(verbose_name="Tiempo de Despacho Aduanero")
