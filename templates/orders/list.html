@@ -2,4 +2,110 @@
 {% load static %}
 
 {% block content %}
+{% comment %} <style>
+    .order-card {
+        background-color: #0056b3; /* Color azul */
+        color: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+    .order-card:hover {
+        transform: scale(1.03);
+    }
+    .order-card h3 {
+        font-size: 1.5em;
+    }
+    .order-card h4 {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+    }
+    .order-card ul {
+        list-style: none;
+        padding: 0;
+    }
+    .order-card ul li {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+    .order-card ul li i {
+        margin-right: 10px;
+    }
+    .order-card .buy-btn {
+        background-color: white;
+        color: #0056b3;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: 2px solid white;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .order-card .buy-btn:hover {
+        background-color: #0056b3;
+        color: white;
+        border-color: #0056b3;
+    }
+</style> {% endcomment %}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+      <div class="page-header d-flex align-items-center" style="background-image: url('assets/img/page-header.jpg');">
+        <div class="container position-relative">
+          <div class="row d-flex justify-content-center">
+            <div class="col-lg-6 text-center">
+              <h2>Pricing</h2>
+              <p>Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav>
+        <div class="container">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Pricing</li>
+          </ol>
+        </div>
+      </nav>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Pricing Section ======= -->
+    <section id="pricing" class="pricing">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row gy-4">
+          <div class="col-lg-7">
+              <h3> {{ model }}</h3> 
+              <div class="row">
+                {% for order in orders %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="order-card" data-aos="fade-up" data-aos-delay="200">
+                        <h3>Orden #{{ order.id }}</h3>
+                        <h4>{{ order.commodity }}<span> - ${{ order.value }}</span></h4>
+                        <ul>
+                            <li><i class="bi bi-check-circle-fill"></i> Origen: {{ order.ship_from }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Destino: {{ order.ship_to }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Volumen: {{ order.volume }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Fecha: {{ order.date }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Estado: {{ order.get_status_display }}</li>
+                        </ul>
+                        <a href="{% url 'core:order-update' order.id %}" class="buy-btn">Editar</a>
+                        <a href="{% url 'core:order-delete' order.id %}" class="buy-btn">Eliminar</a>
+                        <a href="{% url 'core:order-optimize' order.id %}" class="buy-btn">Optimizar Ruta</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+          </div><!-- End Quote Form -->
+        </div>
+    </section><!-- End Horizontal Pricing Section -->
+
+  </main><!-- End #main -->
+  
 {% endblock content %}
