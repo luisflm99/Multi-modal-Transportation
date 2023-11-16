@@ -20,7 +20,7 @@
         <div class="container">
           <ol>
             <li><a href="{% url "core:home" %}">Inicio</a></li>
-            <li>Crear {{ model }}</li>
+            <li>Actualizar {{ model }}</li>
           </ol>
         </div>
       </nav>
@@ -37,7 +37,7 @@
           <div class="col-lg-7">
             <form method="post" class="php-email-form">
               {% csrf_token %}
-              <h3>Crear {{ model }}</h3>
+              <h3>Actualizar {{ model }}</h3>
               <p>Vel nobis odio laboriosam et hic voluptatem. Inventore vitae totam. Rerum repellendus enim linead sero park flows.</p>
               <div class="row gy-4">
                 {% for field in form %}
@@ -51,7 +51,7 @@
                   <div class="error-message">{{ error_message }}</div>
                   <div class="sent-message">{{ success_message }}</div>
 
-                  <button type="submit">Crear</button>
+                  <button type="submit">Actualizar</button>
                 </div>
 
               </div>
